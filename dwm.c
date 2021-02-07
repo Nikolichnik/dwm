@@ -900,13 +900,13 @@ drawbar(Monitor *m)
 			int delimiterwidth = 7;
 
 			// Draw left separator
-			x = drw_text(drw, x, 0, delimiterwidth, bh, -1, "\uE122", 0);
+			x = drw_text(drw, x, 0, delimiterwidth, bh, -1, "", 0);
 
 			// Draw regular window title
 			x = drw_text(drw, x, 0, w - 2 * sp - 2 * delimiterwidth, bh, lrpad / 2, m->sel->name, 0);
 
 			// Draw right separator
-			drw_text(drw, x, 0, delimiterwidth, bh, 0, "\uE123", 0);
+			drw_text(drw, x, 0, delimiterwidth, bh, 0, "", 0);
 
 			if (m->sel->isfloating)
 				drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);

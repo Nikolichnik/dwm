@@ -15,7 +15,7 @@ static const int vertpad            = 9;        /* vertical padding of bar */
 static const int sidepad            = 9;        /* horizontal padding of bar */
 /* static const char leftbarseparator[]  = "\uE122"; /1* bar start symbol *1/ */
 /* static const char rightbarseparator[]    = "\uE123"; /1* bar end symbol *1/ */
-static const char *fonts[]          = { "SourceCodePro-Regular:pixelsize=12:antialias=true:autohint=true", "monospace:size=10", "JoyPixels:pixelsize=10:antialias=true:autohint=true" };
+static const char *fonts[]          = { "SauceCodePro Nerd Font:pixelsize=12:antialias=true:autohint=true", "monospace:size=10", "JoyPixels:pixelsize=10:antialias=true:autohint=true" };
 static char dmenufont[]             = "monospace:size=10";
 static char normbgcolor[]           = "#030303";
 static char normfgcolor[]           = "#dedede";
