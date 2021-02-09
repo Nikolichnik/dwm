@@ -157,8 +157,6 @@ struct Monitor {
 	unsigned int tagset[2];
 	int showbar;
 	int topbar;
-	/* char leftbarseparator; */
-	/* char rightbarseparator; */
 	Client *clients;
 	Client *sel;
 	Client *stack;
@@ -201,6 +199,7 @@ static void detachstack(Client *c);
 static Monitor *dirtomon(int dir);
 static void drawbar(Monitor *m);
 static void drawbars(void);
+static void drawtitlebar(Monitor *m, int x, int w);
 static void enternotify(XEvent *e);
 static void expose(XEvent *e);
 static void focus(Client *c);
@@ -791,8 +790,6 @@ createmon(void)
 	m->nmaster = nmaster;
 	m->showbar = showbar;
 	m->topbar = topbar;
-	/* m->leftbarseparator = leftbarseparator; */
-	/* m->rightbarseparator = rightbarseparator; */
 	m->gappih = gappih;
 	m->gappiv = gappiv;
 	m->gappoh = gappoh;
@@ -895,18 +892,7 @@ drawbar(Monitor *m)
 		if (m->sel) {
 			drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
 
-			/* drw_text(drw, x, 0, w - 2 * sp, bh, lrpad / 2, m->sel->name, 0); */
-
-			int delimiterwidth = 7;
-
-			// Draw left separator
-			x = drw_text(drw, x, 0, delimiterwidth, bh, -1, "", 0);
-
-			// Draw regular window title
-			x = drw_text(drw, x, 0, w - 2 * sp - 2 * delimiterwidth, bh, lrpad / 2, m->sel->name, 0);
-
-			// Draw right separator
-			drw_text(drw, x, 0, delimiterwidth, bh, 0, "", 0);
+			drawtitlebar(m, x, w);
 
 			if (m->sel->isfloating)
 				drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
@@ -925,6 +911,21 @@ drawbars(void)
 
 	for (m = mons; m; m = m->next)
 		drawbar(m);
+}
+
+void
+drawtitlebar(Monitor *m, int x, int w)
+{
+	int barendwidth = 7;
+
+	// Draw right bar end
+	x = drw_text(drw, x, 0, barendwidth, bh, -1, barendright, 0);
+
+	// Draw window title
+	x = drw_text(drw, x, 0, w - 2 * sp - 2 * barendwidth, bh, lrpad / 2, m->sel->name, 0);
+
+	// Draw left bar end
+	drw_text(drw, x, 0, barendwidth, bh, 0, barendleft, 0);
 }
 
 void
