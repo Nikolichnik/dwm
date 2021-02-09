@@ -916,16 +916,24 @@ drawbars(void)
 void
 drawtitlebar(Monitor *m, int x, int w)
 {
-	int barendwidth = 7;
+	XftFont originalfont = drw->fonts->xfont;
+	XftFont barendxftfont = XftFontOpenName(drw->dpy, drw->screen, barendfont);
+	int barendwidth = 8;
 
 	// Draw right bar end
+	drw->fonts->xfont = barendxftfont;
 	x = drw_text(drw, x, 0, barendwidth, bh, -1, barendright, 0);
 
 	// Draw window title
+	drw->fonts->xfont = originalfont;
 	x = drw_text(drw, x, 0, w - 2 * sp - 2 * barendwidth, bh, lrpad / 2, m->sel->name, 0);
 
 	// Draw left bar end
+	drw->fonts->xfont = barendxftfont;
 	drw_text(drw, x, 0, barendwidth, bh, 0, barendleft, 0);
+
+	// Reset font to original
+	drw->fonts->xfont = originalfont;
 }
 
 void
