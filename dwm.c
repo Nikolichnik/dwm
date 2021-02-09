@@ -922,7 +922,7 @@ drawtitlebar(Monitor *m, int x, int w)
 
 	// Draw right bar end
 	drw->fonts->xfont = barendxftfont;
-	x = drw_text(drw, x, 0, barendwidth, bh, -1, barendright, 0);
+	x = drw_text(drw, x, -1, barendwidth, bh + 1, 0, barendright, 0);
 
 	// Draw window title
 	drw->fonts->xfont = originalfont;
@@ -930,7 +930,7 @@ drawtitlebar(Monitor *m, int x, int w)
 
 	// Draw left bar end
 	drw->fonts->xfont = barendxftfont;
-	drw_text(drw, x, 0, barendwidth, bh, 0, barendleft, 0);
+	drw_text(drw, x, -1, barendwidth, bh + 1, 0, barendleft, 0);
 
 	// Reset font to original
 	drw->fonts->xfont = originalfont;
