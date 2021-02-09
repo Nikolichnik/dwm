@@ -916,8 +916,8 @@ drawbars(void)
 void
 drawtitlebar(Monitor *m, int x, int w)
 {
-	XftFont originalfont = drw->fonts->xfont;
-	XftFont barendxftfont = XftFontOpenName(drw->dpy, drw->screen, barendfont);
+	XftFont * originalfont = drw->fonts->xfont;
+	XftFont * barendxftfont = XftFontOpenName(drw->dpy, drw->screen, barendfont);
 	int barendwidth = 8;
 
 	// Draw right bar end
